@@ -24,6 +24,17 @@ class Instructor extends Person {
     grade(student, subject) {
         return `${student.name} receives a perfect score on ${subject}`
     }
+    grading(student, grade) {
+        let points = Math.floor(Math.random() * 11);
+        if (Math.random() > .5) {
+            console.log(`Great! heres ${points} extra points!`);
+            return `Your grade was: ${grade}. But now it is: ${grade + points}.`;
+        } else {
+            console.log(`UNACCEPTABLE! ${points} points deducted!`)
+
+            return `Your grade was: ${grade}. But now it is: ${grade - points}.`;
+        }
+    }
 }
 
 class Student extends Person {
@@ -41,6 +52,20 @@ class Student extends Person {
     }
     sprintChallenge(subject) {
         `${this.name} has begun sprint challenge on ${subject}`
+    }
+    grade() {
+        return Math.floor(Math.random() * 101);
+    }
+
+    graduate() {
+        let grade = this.grade();
+        if (grade >= 70) {
+            console.log(`You're grade was: ${grade}.`);
+            return `Congratulations, here's a job at Google!`
+        } else {
+            console.log(`You're grade was: ${grade}.`);
+            return `Sorry, off to flex!`
+        }
     }
 }
 
@@ -77,3 +102,8 @@ const erik = new Student({
     className: 'Web19',
     favSubjects: ['javascript', ' css', ' html']
 });
+
+console.log(erik.grade());
+console.log(fred.grade(erik, 'algebra'));
+console.log(fred.grading(erik, erik.grade()));
+console.log(erik.graduate());
